@@ -1,0 +1,53 @@
+<div class="form">
+    <mat-form-field floatPlaceholder="never" color="accent">
+    <input class="form-control" type="number" matInput #filter placeholder="Filter results by age: Enter age in number">
+    </mat-form-field>
+</div>
+  
+  <mat-table #table [dataSource]="customers" matSort class="mat-cell">
+    <ng-container matColumnDef="ProfileImage">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Profile Image</mat-header-cell>
+        <mat-cell *matCellDef="let row" ><div [innerHTML]="row.ProfileImage"></div></mat-cell>
+      </ng-container>
+    <ng-container matColumnDef="CustomerId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Customer Id</mat-header-cell>
+      <mat-cell *matCellDef="let row" >{{row.CustomerId}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="FullName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Full Name</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.FullName}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="DateOfBirth">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Date Of Birth</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.DateOfBirth | date:'dd/MM/yyyy'}}</mat-cell>
+    </ng-container>
+
+    <!-- actions -->
+    <ng-container matColumnDef="Actions">
+      <mat-header-cell *matHeaderCellDef>
+        <button mat-icon-button color="primary" (click)="openAddCustomerDialog()">
+          <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+          <span>Add Customer</span>
+        </button>
+      </mat-header-cell>
+
+      <mat-cell *matCellDef="let row; let i=index;">
+        <button mat-icon-button color="accent" (click)="openEditCustomerDialog(row.CustomerId)">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+
+        <button mat-icon-button color="accent" >
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+
+
+  

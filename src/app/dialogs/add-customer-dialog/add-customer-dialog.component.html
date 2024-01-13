@@ -1,0 +1,26 @@
+<div class="container">
+    <h3 mat-dialog-title>Add new Customer</h3>
+  
+    <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+  
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput #input class="form-control" placeholder="Full Name" [(ngModel)]="data.FullName" name="fullName" required >
+          <mat-error *ngIf="formControl.invalid">{{requiredErrorMessage}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form">
+        <mat-form-field color="accent">
+          <input type="date" matInput #inputstate class="form-control" placeholder="Date of Birth" [(ngModel)]="data.DateOfBirth" name="dateOfBirth" required >
+          <mat-error *ngIf="formControl.invalid">{{requiredErrorMessage}}</mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div mat-dialog-actions>
+        <button mat-button type="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="addCustomer()">Save</button>
+        <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+      </div>
+    </form>
+  </div>
+  
